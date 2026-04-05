@@ -320,6 +320,10 @@
       border: 1px solid rgba(255,255,255,0.08);
     }
 
+    #form-status {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
     .mock-panel {
       border-radius: 20px;
       padding: 18px;
@@ -1155,29 +1159,81 @@
           <div class="card contact-form-box">
             <h3>Fale com a gente</h3>
 
-            <form class="contact-form" action="https://formspree.io/f/xzdkkjdn" method="POST">
-
+            <form
+              id="contactForm"
+              class="contact-form"
+              action="https://formspree.io/f/xzdkdjkn"
+              method="POST"
+            >
               <div class="field">
-                <label>Nome</label>
-                <input type="text" name="nome" placeholder="Seu nome" required />
+                <label for="nome">Nome</label>
+                <input id="nome" name="nome" type="text" placeholder="Seu nome" required />
               </div>
 
               <div class="field">
-                <label>E-mail</label>
-                <input type="email" name="email" placeholder="voce@empresa.com" required />
+                <label for="email">E-mail</label>
+                <input id="email" name="email" type="email" placeholder="voce@empresa.com" required />
               </div>
 
               <div class="field">
-                <label>Mensagem</label>
-                <textarea name="mensagem" placeholder="Conte um pouco sobre seu projeto..." required></textarea>
+                <label for="mensagem">Mensagem</label>
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  placeholder="Conte um pouco sobre seu projeto..."
+                  required
+                ></textarea>
               </div>
 
-              <button class="btn btn-primary" type="submit">
+              <button class="btn btn-primary" type="submit" id="submitBtn">
                 Enviar mensagem
               </button>
 
+              <p id="form-status" style="margin-top: 14px; color: var(--muted);"></p>
             </form>
           </div>
+
+          <script>
+            const form = document.getElementById("contactForm");
+            const statusText = document.getElementById("form-status");
+            const submitBtn = document.getElementById("submitBtn");
+
+            form.addEventListener("submit", async function (event) {
+              event.preventDefault();
+
+              statusText.textContent = "Enviando mensagem...";
+              statusText.style.color = "#9fb0cc";
+              submitBtn.disabled = true;
+              submitBtn.textContent = "Enviando...";
+
+              const formData = new FormData(form);
+
+              try {
+                const response = await fetch(form.action, {
+                  method: form.method,
+                  body: formData,
+                  headers: {
+                    Accept: "application/json"
+                  }
+                });
+
+                if (response.ok) {
+                  statusText.textContent = "Mensagem enviada com sucesso! Entraremos em contato em breve.";
+                  statusText.style.color = "#34d399";
+                  form.reset();
+                } else {
+                  statusText.textContent = "Não foi possível enviar agora. Tente novamente em instantes.";
+                  statusText.style.color = "#f87171";
+                }
+              } catch (error) {
+                statusText.textContent = "Erro de conexão. Verifique sua internet e tente novamente.";
+                statusText.style.color = "#f87171";
+              }
+
+              submitBtn.disabled = false;
+              submitBtn.textContent = "Enviar mensagem";
+            });
+          </script>
 
         </div>
 
