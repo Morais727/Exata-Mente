@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sua Empresa | Portfólio de Projetos</title>
+  <style>
+    :root {
+      --bg: #081120;
+      --bg-soft: #0f1b31;
+      --card: rgba(15, 27, 49, 0.72);
+      --line: rgba(148, 163, 184, 0.18);
+      --text: #e5eefc;
+      --muted: #9fb0cc;
+      --primary: #60a5fa;
+      --primary-strong: #3b82f6;
+      --secondary: #22d3ee;
+      --accent: #a78bfa;
+      --success: #34d399;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --radius-sm: 16px;
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(96, 165, 250, 0.18), transparent 22%),
+        radial-gradient(circle at 85% 18%, rgba(167, 139, 250, 0.16), transparent 22%),
+        radial-gradient(circle at 80% 72%, rgba(34, 211, 238, 0.12), transparent 18%),
+        linear-gradient(180deg, #050b16 0%, #081120 45%, #0a1425 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 34px 34px;
+      pointer-events: none;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.7), transparent 92%);
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .glow {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(80px);
+      opacity: 0.45;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glow.one {
+      width: 220px;
+      height: 220px;
+      top: 90px;
+      left: -60px;
+      background: rgba(59, 130, 246, 0.22);
+    }
+
+    .glow.two {
+      width: 260px;
+      height: 260px;
+      top: 360px;
+      right: -40px;
+      background: rgba(167, 139, 250, 0.18);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 11, 22, 0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: bold;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.28);
+      color: white;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 15px;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: bold;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-strong), var(--secondary));
+      color: white;
+      box-shadow: 0 14px 34px rgba(59, 130, 246, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(59, 130, 246, 0.34);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero {
+      padding: 88px 0 72px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(96, 165, 250, 0.24);
+      background: rgba(96, 165, 250, 0.08);
+      color: #bfdbfe;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.14);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 1.02;
+      margin-bottom: 18px;
+      letter-spacing: -1.8px;
+      max-width: 12ch;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #ffffff, #8bd8ff, #bba5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 62ch;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 620px;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 18px;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-card {
+      width: min(100%, 460px);
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(15, 27, 49, 0.92), rgba(8, 17, 32, 0.92));
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+      overflow: hidden;
+      position: relative;
+      animation: floatCard 5s ease-in-out infinite;
+    }
+
+    .visual-top {
+      display: flex;
+      gap: 8px;
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+    }
+
+    .visual-body {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .mock-panel,
+    .mini-card,
+    .bar,
+    .tag,
+    .project-row {
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mock-panel {
+      border-radius: 20px;
+      padding: 18px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .signal {
+      height: 160px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.32), transparent 24%),
+        radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.32), transparent 28%),
+        linear-gradient(180deg, rgba(96, 165, 250, 0.08), rgba(255,255,255,0.02));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signal::before,
+    .signal::after {
+      content: "";
+      position: absolute;
+      inset: auto 12px 24px 12px;
+      height: 58px;
+      border-radius: 999px;
+      border: 2px solid rgba(96, 165, 250, 0.28);
+      transform: skewY(-4deg);
+    }
+
+    .signal::after {
+      inset: auto 28px 50px 28px;
+      height: 40px;
+      border-color: rgba(34, 211, 238, 0.3);
+    }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .mini-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .mini-card h4 {
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+    }
+
+    .bars {
+      display: grid;
+      gap: 8px;
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: var(--w, 60%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .project-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .project-row strong {
+      color: var(--text);
+      font-size: 0.96rem;
+    }
+
+    section {
+      padding: 34px 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 26px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin-bottom: 10px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      max-width: 62ch;
+      line-height: 1.7;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.8rem;
+      color: #c7d2fe;
+      border: 1px solid rgba(167,139,250,0.25);
+      background: rgba(167,139,250,0.08);
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.3px;
+    }
+
+    .services,
+    .projects,
+    .contact-grid,
+    .about-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .services {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -10%;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(96, 165, 250, 0.09);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(96, 165, 250, 0.3);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(34,211,238,0.14));
+      border: 1px solid rgba(96, 165, 250, 0.22);
+      font-size: 1.3rem;
+    }
+
+    .card h3 {
+      font-size: 1.12rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 0.98rem;
+    }
+
+    .about-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: stretch;
+    }
+
+    .about-card ul {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .about-card li {
+      display: flex;
+      gap: 12px;
+      align-items: start;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .about-card li::before {
+      content: "✦";
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .about-panel {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metric-box {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .metric-box strong {
+      display: block;
+      font-size: 1.9rem;
+      margin-bottom: 6px;
+    }
+
+    .metric-box span {
+      color: var(--muted);
+    }
+
+    .projects {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .project-thumb {
+      height: 190px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(135deg, rgba(59,130,246,0.16), rgba(34,211,238,0.06)),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-thumb::before,
+    .project-thumb::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .project-thumb::before {
+      width: 180px;
+      height: 180px;
+      right: -40px;
+      top: -50px;
+    }
+
+    .project-thumb::after {
+      width: 90px;
+      height: 90px;
+      left: 18px;
+      bottom: 18px;
+      background: rgba(96, 165, 250, 0.14);
+      box-shadow: 80px -24px 0 0 rgba(167, 139, 250, 0.12);
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .project-meta span {
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #cdd8eb;
+      padding: 7px 11px;
+      font-size: 0.83rem;
+    }
+
+    .project-card p {
+      margin-bottom: 2px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .project-links a {
+      color: #dbeafe;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .project-links a:hover {
+      color: white;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: start;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .contact-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .contact-item strong,
+    .contact-item a {
+      font-size: 1rem;
+    }
+
+    .contact-card .btn {
+      margin-top: 22px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      color: #d3e0f5;
+      font-size: 0.95rem;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: white;
+      outline: none;
+      font: inherit;
+      transition: 0.2s ease;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: rgba(96, 165, 250, 0.45);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+    }
+
+    .field textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 30px 0 50px;
+      color: var(--muted);
+    }
+
+    .footer-bar {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: 0.7s ease;
+    }
+
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .services,
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 66px;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .hero h1 {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        align-items: start;
+      }
+
+      .visual-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#inicio" class="brand">
+        <div class="brand-badge">◉</div>
+        <div>
+          <div>Sua Empresa</div>
+          <small style="color: var(--muted); font-weight: normal;">Portfólio digital</small>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+        <a href="#contato" class="btn btn-primary">Falar comigo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="glow one"></div>
+        <div class="glow two"></div>
+
+        <div class="hero-grid">
+          <div class="fade-up">
+            <div class="eyebrow">Projetos criativos, soluções digitais e presença profissional</div>
+            <h1>Transformo ideias em <span>experiências digitais</span> marcantes.</h1>
+            <p>
+              Desenvolvo soluções com visual moderno, comunicação clara e foco em resultado.
+              Esta página foi pensada para apresentar sua empresa, seus principais projetos e facilitar
+              o contato com potenciais clientes de forma elegante, objetiva e tecnológica.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+              <a href="#contato" class="btn btn-outline">Solicitar orçamento</a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat">
+                <strong>+12</strong>
+                <span>Projetos entregues</span>
+              </div>
+              <div class="stat">
+                <strong>100%</strong>
+                <span>Foco em performance</span>
+              </div>
+              <div class="stat">
+                <strong>24h</strong>
+                <span>Resposta inicial rápida</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual fade-up">
+            <div class="visual-card">
+              <div class="visual-top">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="visual-body">
+                <div class="mock-panel signal"></div>
+
+                <div class="visual-grid">
+                  <div class="mini-card">
+                    <h4>Stack essencial</h4>
+                    <div class="tags">
+                      <span class="tag">HTML</span>
+                      <span class="tag">CSS</span>
+                      <span class="tag">JavaScript</span>
+                      <span class="tag">Vercel</span>
+                    </div>
+                  </div>
+
+                  <div class="mini-card">
+                    <h4>Indicadores</h4>
+                    <div class="bars">
+                      <div class="bar" style="--w: 88%"></div>
+                      <div class="bar" style="--w: 72%"></div>
+                      <div class="bar" style="--w: 94%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mini-card">
+                  <h4>Projetos em destaque</h4>
+                  <div class="project-list">
+                    <div class="project-row"><strong>Landing Page Premium</strong><span>Conversão + design</span></div>
+                    <div class="project-row"><strong>Sistema Web</strong><span>Organização e automação</span></div>
+                    <div class="project-row"><strong>Portfólio Profissional</strong><span>Presença digital</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div>
+            <div class="pill">Sobre a empresa</div>
+            <h2>Presença digital com identidade forte</h2>
+            <p>
+              Sua empresa pode usar esta área para contar quem é, o que faz e como entrega valor.
+              O ideal aqui é mostrar profissionalismo sem perder personalidade, com uma linguagem jovem,
+              atual e alinhada com tecnologia.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="card about-card fade-up">
+            <h3>O que você pode destacar aqui</h3>
+            <p>
+              Este espaço funciona como uma apresentação institucional compacta. Ele ajuda a transmitir
+              confiança logo nos primeiros segundos e reforça os diferenciais do seu trabalho.
+            </p>
+            <ul>
+              <li>Atendimento próximo, comunicação clara e foco em entender a necessidade real do cliente.</li>
+              <li>Projetos com estética moderna, boa organização visual e experiência de navegação fluida.</li>
+              <li>Estrutura leve e simples de publicar na Vercel, sem depender de tecnologias exageradas.</li>
+            </ul>
+          </div>
+
+          <div class="about-panel fade-up">
+            <div class="metric-box">
+              <strong>Design + estratégia</strong>
+              <span>Uma combinação entre visual impactante e clareza na apresentação do conteúdo.</span>
+            </div>
+            <div class="metric-box">
+              <strong>Site leve</strong>
+              <span>Estrutura adequada para deploy rápido, manutenção simples e boa performance.</span>
+            </div>
+            <div class="metric-box">
+              <strong>Fácil de personalizar</strong>
+              <span>Textos, links, contatos, cores e projetos podem ser ajustados sem complicação.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div>
+            <div class="pill">Soluções</div>
+            <h2>Como sua empresa pode se apresentar</h2>
+            <p>
+              Uma seção estratégica para mostrar o tipo de serviço ou produto que você oferece.
+              Isso ajuda o visitante a entender rapidamente em quais frentes você atua.
+            </p>
+          </div>
+        </div>
+
+        <div class="services">
+          <article class="card fade-up">
+            <div class="icon">⚡</div>
+            <h3>Landing pages</h3>
+            <p>
+              Páginas objetivas e atraentes para apresentar serviços, captar leads e gerar mais conversões.
+            </p>
+          </article>
+
+          <article class="card fade-up">
+            <div class="icon">🧠</div>
+            <h3>Sistemas e automações</h3>
+            <p>
+              Soluções web sob medida para organizar processos, centralizar informações e melhorar a operação.
+            </p>
+          </article>
+
+          <article class="card fade-up">
+            <div class="icon">🚀</div>
+            <h3>Portfólios e presença digital</h3>
+            <p>
+              Estruturas modernas para apresentar a marca, reforçar autoridade e valorizar seus projetos.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div>
+            <div class="pill">Portfólio</div>
+            <h2>Projetos em destaque</h2>
+            <p>
+              Abaixo estão exemplos de cards prontos para você substituir pelos seus trabalhos reais.
+              Eles foram pensados para destacar o objetivo, a proposta e os links de cada projeto.
+            </p>
+          </div>
+        </div>
+
+        <div class="projects">
+          <article class="card project-card fade-up">
+            <div class="project-thumb"></div>
+            <div class="project-meta">
+              <span>Website</span>
+              <span>UI moderna</span>
+              <span>Responsivo</span>
+            </div>
+            <h3>Projeto Alpha</h3>
+            <p>
+              Página institucional com foco em apresentação de marca, autoridade visual e geração de contatos.
+            </p>
+            <div class="project-links">
+              <a href="#">Ver projeto</a>
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+
+          <article class="card project-card fade-up">
+            <div class="project-thumb"></div>
+            <div class="project-meta">
+              <span>Sistema Web</span>
+              <span>Dashboard</span>
+              <span>Produtividade</span>
+            </div>
+            <h3>Projeto Beta</h3>
+            <p>
+              Interface voltada para organização de processos, com painéis de visualização e fluxo simplificado.
+            </p>
+            <div class="project-links">
+              <a href="#">Ver projeto</a>
+              <a href="#">Detalhes</a>
+            </div>
+          </article>
+
+          <article class="card project-card fade-up">
+            <div class="project-thumb"></div>
+            <div class="project-meta">
+              <span>Portfólio</span>
+              <span>Branding</span>
+              <span>Performance</span>
+            </div>
+            <h3>Projeto Gamma</h3>
+            <p>
+              Estrutura visual criada para valorizar cases, melhorar o posicionamento digital e prender a atenção.
+            </p>
+            <div class="project-links">
+              <a href="#">Visitar</a>
+              <a href="#">Saiba mais</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div>
+            <div class="pill">Contato</div>
+            <h2>Vamos conversar sobre seu próximo projeto</h2>
+            <p>
+              Deixe seus dados visíveis nesta seção para facilitar o contato. Você pode usar e-mail, WhatsApp,
+              Instagram, LinkedIn ou qualquer outro canal principal da sua empresa.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card contact-card fade-up">
+            <h3>Informações de contato</h3>
+            <p>
+              Substitua os dados abaixo pelas informações reais da sua empresa.
+            </p>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <span>E-mail</span>
+                <a href="mailto:contato@suaempresa.com">contato@suaempresa.com</a>
+              </div>
+
+              <div class="contact-item">
+                <span>WhatsApp</span>
+                <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">+55 (00) 00000-0000</a>
+              </div>
+
+              <div class="contact-item">
+                <span>Instagram</span>
+                <a href="#" target="_blank" rel="noopener noreferrer">@suaempresa</a>
+              </div>
+
+              <div class="contact-item">
+                <span>LinkedIn</span>
+                <a href="#" target="_blank" rel="noopener noreferrer">linkedin.com/company/suaempresa</a>
+              </div>
+            </div>
+
+            <a href="mailto:contato@suaempresa.com" class="btn btn-primary">Entrar em contato</a>
+          </div>
+
+          <div class="card fade-up">
+            <h3>Mensagem rápida</h3>
+            <p style="margin-bottom: 18px;">
+              Este formulário é visual e serve como base. Para enviar mensagens de verdade, você pode integrar com
+              Formspree, Getform ou outro serviço simples depois.
+            </p>
+
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Formulário de demonstração. Você pode integrar esse envio depois.');">
+              <div class="field">
+                <label for="nome">Nome</label>
+                <input id="nome" type="text" placeholder="Seu nome" />
+              </div>
+
+              <div class="field">
+                <label for="email">E-mail</label>
+                <input id="email" type="email" placeholder="voce@empresa.com" />
+              </div>
+
+              <div class="field">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" placeholder="Conte um pouco sobre o projeto..."></textarea>
+              </div>
+
+              <button class="btn btn-outline" type="submit">Enviar mensagem</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-bar">
+      <span>© 2026 Sua Empresa. Todos os direitos reservados.</span>
+      <span>Feito com visual moderno, leve e pronto para deploy na Vercel.</span>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
+
