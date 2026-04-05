@@ -700,6 +700,61 @@
       gap: 14px;
     }
 
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center; 
+    }
+
+    .contact-text {
+      max-width: 520px;
+    }
+    
+    .contact-text h2 {
+      margin-bottom: 12px;
+    }
+
+    .contact-text p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-form-box {
+      max-width: 480px;
+      width: 100%;
+      justify-self: end;
+    }
+
+
+    .contact-form-box {
+      max-width: 480px;
+      width: 100%;
+      justify-self: end;
+    }
+
+    @media (max-width: 900px) {
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .contact-form-box {
+        justify-self: center;
+      }
+
+      .contact-text {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .pill {
+        text-align: center;
+        display: block;
+      }
+    }
+
+
     .field {
       display: grid;
       gap: 8px;
@@ -742,10 +797,15 @@
     .footer-bar {
       border-top: 1px solid rgba(255,255,255,0.08);
       padding-top: 22px;
+      text-align: center;
       display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-bar span {
+      display: block;
+      width: 100%;
     }
 
     .fade-up {
@@ -840,12 +900,10 @@
         <div class="hero-grid">
           <div class="fade-up">
             <div class="eyebrow">Projetos criativos, soluções digitais e presença profissional</div>
-            <h1>Transformo ideias em <span>experiências digitais</span> marcantes.</h1>
-            <p>
-              Desenvolvo soluções com visual moderno, comunicação clara e foco em resultado.
-              Esta página foi pensada para apresentar sua empresa, seus principais projetos e facilitar
-              o contato com potenciais clientes de forma elegante, objetiva e tecnológica.
-            </p>
+            <h1>Transformamos ideias em <span>experiências digitais de alto impacto</span>.</h1>
+              <p>
+                Desenvolvemos soluções digitais com design contemporâneo, comunicação estratégica e foco em resultados concretos.                
+              </p>
 
             <div class="hero-actions">
               <a href="#projetos" class="btn btn-primary">Ver projetos</a>
@@ -885,9 +943,13 @@
                       <span class="tag">HTML</span>
                       <span class="tag">CSS</span>
                       <span class="tag">JavaScript</span>
-                      <span class="tag">Vercel</span>
+                      <span class="tag">Java</span>
+                      <span class="tag">C</span>
+                      <span class="tag">C#</span>
+                      <span class="tag">Python</span>
                     </div>
                   </div>
+                </div>
 
                   <div class="mini-card">
                     <h4>Indicadores</h4>
@@ -921,39 +983,39 @@
             <div class="pill">Sobre a empresa</div>
             <h2>Presença digital com identidade forte</h2>
             <p>
-              Sua empresa pode usar esta área para contar quem é, o que faz e como entrega valor.
-              O ideal aqui é mostrar profissionalismo sem perder personalidade, com uma linguagem jovem,
-              atual e alinhada com tecnologia.
+              Sua empresa merece mais do que apenas “estar online”. Criamos experiências digitais que conectam, 
+              geram confiança e convertem visitantes em clientes com estratégia, design e tecnologia trabalhando juntos.
             </p>
           </div>
         </div>
 
         <div class="about-grid">
           <div class="card about-card fade-up">
-            <h3>O que você pode destacar aqui</h3>
+            <h3>Por que escolher a gente?</h3>
             <p>
-              Este espaço funciona como uma apresentação institucional compacta. Ele ajuda a transmitir
-              confiança logo nos primeiros segundos e reforça os diferenciais do seu trabalho.
+              Nos primeiros segundos, seu cliente decide se continua ou vai embora. 
+              Nós garantimos que ele fique. Criamos experiências digitais que passam 
+              confiança, destacam seu valor e aumentam suas chances de conversão.
             </p>
             <ul>
-              <li>Atendimento próximo, comunicação clara e foco em entender a necessidade real do cliente.</li>
-              <li>Projetos com estética moderna, boa organização visual e experiência de navegação fluida.</li>
-              <li>Estrutura leve e simples de publicar na Vercel, sem depender de tecnologias exageradas.</li>
+              <li>Atendimento direto e estratégico, focado em entender e resolver o que realmente importa para o seu negócio.</li>
+              <li>Design moderno e profissional, pensado para prender atenção e transformar visitantes em clientes.</li>
+              <li>Sites rápidos, leves e prontos para ir ao ar sem complicação — você foca no negócio, nós cuidamos do resto.</li>
             </ul>
           </div>
 
           <div class="about-panel fade-up">
             <div class="metric-box">
-              <strong>Design + estratégia</strong>
-              <span>Uma combinação entre visual impactante e clareza na apresentação do conteúdo.</span>
+              <strong>Design que vende</strong>
+              <span>Mais do que bonito: criamos interfaces pensadas para engajar, reter e converter.</span>
             </div>
             <div class="metric-box">
-              <strong>Site leve</strong>
-              <span>Estrutura adequada para deploy rápido, manutenção simples e boa performance.</span>
+              <strong>Performance de verdade</strong>
+              <span>Sites rápidos, otimizados e prontos para rodar com alta performance em qualquer dispositivo.</span>
             </div>
             <div class="metric-box">
-              <strong>Fácil de personalizar</strong>
-              <span>Textos, links, contatos, cores e projetos podem ser ajustados sem complicação.</span>
+              <strong>Feito para você evoluir</strong>
+              <span>Totalmente personalizável, escalável e adaptado às necessidades do seu negócio.</span>
             </div>
           </div>
         </div>
@@ -965,10 +1027,11 @@
         <div class="section-header fade-up">
           <div>
             <div class="pill">Soluções</div>
-            <h2>Como sua empresa pode se apresentar</h2>
+            <h2>Soluções que fazem sua empresa crescer</h2>
             <p>
-              Uma seção estratégica para mostrar o tipo de serviço ou produto que você oferece.
-              Isso ajuda o visitante a entender rapidamente em quais frentes você atua.
+              Desenvolvemos soluções digitais pensadas para atrair clientes, fortalecer sua marca 
+              e gerar resultados reais. Se você quer mais visibilidade, mais autoridade e mais vendas, 
+              você está no lugar certo.
             </p>
           </div>
         </div>
@@ -1006,10 +1069,11 @@
         <div class="section-header fade-up">
           <div>
             <div class="pill">Portfólio</div>
-            <h2>Projetos em destaque</h2>
+            <h2>Projetos que geram resultados</h2>
             <p>
-              Abaixo estão exemplos de cards prontos para você substituir pelos seus trabalhos reais.
-              Eles foram pensados para destacar o objetivo, a proposta e os links de cada projeto.
+              Cada projeto apresentado aqui foi desenvolvido com foco em performance, design e resultado.
+              Mais do que estética, entregamos soluções que ajudam empresas a crescer, se destacar no mercado
+              e conquistar novos clientes.
             </p>
           </div>
         </div>
@@ -1071,84 +1135,59 @@
 
     <section id="contato">
       <div class="container">
-        <div class="section-header fade-up">
-          <div>
-            <div class="pill">Contato</div>
-            <h2>Vamos conversar sobre seu próximo projeto</h2>
+
+        <!-- PILL NO TOPO -->
+        <div class="pill" style="margin-bottom: 20px;">Contato</div>
+
+        <div class="contact-wrapper fade-up">
+
+          <!-- TEXTO -->
+          <div class="contact-text">
+            <h2>Solicite seu orçamento</h2>
             <p>
-              Deixe seus dados visíveis nesta seção para facilitar o contato. Você pode usar e-mail, WhatsApp,
-              Instagram, LinkedIn ou qualquer outro canal principal da sua empresa.
+              Se você tem um projeto em mente, uma ideia para tirar do papel ou quer 
+              saber como podemos ajudar, entre em contato. Estamos prontos para transformar 
+              suas ideias em soluções digitais de impacto.
             </p>
           </div>
-        </div>
 
-        <div class="contact-grid">
-          <div class="card contact-card fade-up">
-            <h3>Informações de contato</h3>
-            <p>
-              Substitua os dados abaixo pelas informações reais da sua empresa.
-            </p>
+          <!-- FORMULÁRIO -->
+          <div class="card contact-form-box">
+            <h3>Fale com a gente</h3>
 
-            <div class="contact-list">
-              <div class="contact-item">
-                <span>E-mail</span>
-                <a href="mailto:contato@suaempresa.com">contato@suaempresa.com</a>
-              </div>
+            <form class="contact-form" action="https://formspree.io/f/xzdkdjkn" method="POST">
 
-              <div class="contact-item">
-                <span>WhatsApp</span>
-                <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer">+55 (00) 00000-0000</a>
-              </div>
-
-              <div class="contact-item">
-                <span>Instagram</span>
-                <a href="#" target="_blank" rel="noopener noreferrer">@suaempresa</a>
-              </div>
-
-              <div class="contact-item">
-                <span>LinkedIn</span>
-                <a href="#" target="_blank" rel="noopener noreferrer">linkedin.com/company/suaempresa</a>
-              </div>
-            </div>
-
-            <a href="mailto:contato@suaempresa.com" class="btn btn-primary">Entrar em contato</a>
-          </div>
-
-          <div class="card fade-up">
-            <h3>Mensagem rápida</h3>
-            <p style="margin-bottom: 18px;">
-              Este formulário é visual e serve como base. Para enviar mensagens de verdade, você pode integrar com
-              Formspree, Getform ou outro serviço simples depois.
-            </p>
-
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Formulário de demonstração. Você pode integrar esse envio depois.');">
               <div class="field">
-                <label for="nome">Nome</label>
-                <input id="nome" type="text" placeholder="Seu nome" />
+                <label>Nome</label>
+                <input type="text" name="nome" placeholder="Seu nome" required />
               </div>
 
               <div class="field">
-                <label for="email">E-mail</label>
-                <input id="email" type="email" placeholder="voce@empresa.com" />
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="voce@empresa.com" required />
               </div>
 
               <div class="field">
-                <label for="mensagem">Mensagem</label>
-                <textarea id="mensagem" placeholder="Conte um pouco sobre o projeto..."></textarea>
+                <label>Mensagem</label>
+                <textarea name="mensagem" placeholder="Conte um pouco sobre seu projeto..." required></textarea>
               </div>
 
-              <button class="btn btn-outline" type="submit">Enviar mensagem</button>
+              <button class="btn btn-primary" type="submit">
+                Enviar mensagem
+              </button>
+
             </form>
           </div>
+
         </div>
+
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container footer-bar">
-      <span>© 2026 Sua Empresa. Todos os direitos reservados.</span>
-      <span>Feito com visual moderno, leve e pronto para deploy na Vercel.</span>
+      <span>© 2026 Exata-Mente • Transformando ideias em soluções digitais de impacto 💙</span>
     </div>
   </footer>
 
