@@ -7,912 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #070b14;
-      --bg-soft: #0d1425;
-      --surface: #111b30;
-      --card: rgba(17, 27, 48, 0.78);
-      --card-hover: rgba(22, 34, 56, 0.9);
-      --line: rgba(255, 255, 255, 0.06);
-      --line-hover: rgba(255, 255, 255, 0.12);
-      --text: #edf2fc;
-      --text-secondary: #8b9bb8;
-      --text-muted: #6b7d9a;
-      --primary: #2563eb;
-      --primary-hover: #3b82f6;
-      --primary-soft: rgba(37, 99, 235, 0.1);
-      --accent: #f59e0b;
-      --accent-soft: rgba(245, 158, 11, 0.1);
-      --success: #10b981;
-      --radius: 20px;
-      --radius-sm: 14px;
-      --radius-xs: 10px;
-      --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.2);
-      --shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
-      --shadow-lg: 0 24px 72px rgba(0, 0, 0, 0.4);
-      --max: 1140px;
-      --font: 'Inter', system-ui, -apple-system, sans-serif;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    ::selection { background: rgba(37, 99, 235, 0.3); color: white; }
-
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      width: min(90%, var(--max));
-      margin: 0 auto;
-    }
-
-    /* ----- HEADER ----- */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background: rgba(7, 11, 20, 0.78);
-      border-bottom: 1px solid var(--line);
-      transition: border-color 0.3s;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
-      gap: 18px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--primary), #1d4ed8);
-      color: white;
-      font-weight: 700;
-      font-size: 16px;
-      letter-spacing: -1px;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-name {
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: -0.3px;
-      color: var(--text);
-    }
-
-    .brand-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      letter-spacing: 0.2px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .nav-links a {
-      font-size: 0.92rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-      transition: color 0.2s;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: width 0.25s;
-      border-radius: 2px;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.92rem;
-      font-family: var(--font);
-      transition: all 0.25s;
-      cursor: pointer;
-      border: none;
-      outline: none;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 8px 28px rgba(37, 99, 235, 0.25);
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-hover);
-      box-shadow: 0 12px 36px rgba(37, 99, 235, 0.35);
-      transform: translateY(-1px);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--line);
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--line-hover);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .btn-ghost-light {
-      background: transparent;
-      color: var(--text-secondary);
-      border: 1px solid var(--line);
-    }
-
-    .btn-ghost-light:hover {
-      border-color: var(--line-hover);
-      color: var(--text);
-    }
-
-    /* ----- HERO ----- */
-    .hero {
-      padding: 100px 0 80px;
-      position: relative;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--primary-soft);
-      border: 1px solid rgba(37, 99, 235, 0.18);
-      color: #93bbfc;
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 24px;
-    }
-
-    .hero-tag-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.12);
-    }
-
-    .hero h1 {
-      font-size: clamp(2.4rem, 5vw, 4.5rem);
-      line-height: 1.05;
-      letter-spacing: -1.5px;
-      font-weight: 800;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, #f0f4ff 0%, #93bbfc 50%, #bfa5ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero p {
-      color: var(--text-secondary);
-      font-size: 1.08rem;
-      line-height: 1.8;
-      max-width: 56ch;
-      margin-bottom: 32px;
-      font-weight: 400;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 40px;
-    }
-
-    .hero-metrics {
-      display: flex;
-      gap: 0;
-      border-top: 1px solid var(--line);
-      padding-top: 28px;
-      max-width: 520px;
-    }
-
-    .hero-metric {
-      flex: 1;
-    }
-
-    .hero-metric + .hero-metric {
-      border-left: 1px solid var(--line);
-      padding-left: 24px;
-    }
-
-    .hero-metric:not(:first-child) {
-      padding-left: 24px;
-    }
-
-    .hero-metric strong {
-      display: block;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: var(--text);
-    }
-
-    .hero-metric span {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .hero-visual {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mock-card {
-      width: min(100%, 440px);
-      border-radius: 24px;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-    }
-
-    .mock-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .mock-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-    }
-
-    .mock-dot:nth-child(1) { background: #ef4444; }
-    .mock-dot:nth-child(2) { background: #f59e0b; }
-    .mock-dot:nth-child(3) { background: #10b981; }
-
-    .mock-body {
-      padding: 22px;
-      display: grid;
-      gap: 18px;
-    }
-
-    .mock-chart {
-      height: 150px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(59, 130, 246, 0.03));
-      border: 1px solid var(--line);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mock-chart-bars {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      height: 100px;
-    }
-
-    .mock-chart-bar {
-      flex: 1;
-      border-radius: 4px 4px 0 0;
-      background: linear-gradient(180deg, var(--primary), rgba(37, 99, 235, 0.3));
-      min-height: 20px;
-    }
-
-    .mock-chart-bar:nth-child(1) { height: 55%; }
-    .mock-chart-bar:nth-child(2) { height: 75%; }
-    .mock-chart-bar:nth-child(3) { height: 45%; }
-    .mock-chart-bar:nth-child(4) { height: 88%; }
-    .mock-chart-bar:nth-child(5) { height: 62%; }
-    .mock-chart-bar:nth-child(6) { height: 95%; }
-    .mock-chart-bar:nth-child(7) { height: 70%; }
-
-    .mock-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .mock-item {
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .mock-item-label {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-
-    .mock-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .mock-tag {
-      padding: 5px 10px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--line);
-      color: var(--text-secondary);
-    }
-
-    .mock-progress {
-      display: grid;
-      gap: 8px;
-    }
-
-    .mock-progress-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .mock-progress-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      width: 70px;
-      flex-shrink: 0;
-    }
-
-    .mock-progress-track {
-      flex: 1;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      overflow: hidden;
-    }
-
-    .mock-progress-fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--primary), #3b82f6);
-    }
-
-    .mock-projects {
-      display: grid;
-      gap: 8px;
-    }
-
-    .mock-project {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .mock-project-name {
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .mock-project-tag {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      padding: 3px 8px;
-      border-radius: 4px;
-      background: rgba(255,255,255,0.04);
-    }
-
-    /* ----- SECTIONS ----- */
-    section {
-      padding: 60px 0;
-      position: relative;
-    }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: -0.8px;
-      margin-bottom: 14px;
-    }
-
-    .section-desc {
-      color: var(--text-secondary);
-      line-height: 1.75;
-      max-width: 64ch;
-      font-size: 1rem;
-    }
-
-    .section-header {
-      margin-bottom: 40px;
-    }
-
-    /* ----- CARDS ----- */
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 28px;
-      box-shadow: var(--shadow-sm);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.3s;
-    }
-
-    .card:hover {
-      border-color: var(--line-hover);
-      box-shadow: var(--shadow);
-      background: var(--card-hover);
-      transform: translateY(-2px);
-    }
-
-    .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-      background: var(--primary-soft);
-      border: 1px solid rgba(37, 99, 235, 0.15);
-      font-size: 1.3rem;
-    }
-
-    .card h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -0.2px;
-    }
-
-    .card p {
-      color: var(--text-secondary);
-      line-height: 1.75;
-      font-size: 0.95rem;
-    }
-
-    /* ----- ABOUT ----- */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .about-list {
-      list-style: none;
-      display: grid;
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    .about-list li {
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .about-list li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary);
-      margin-top: 10px;
-      flex-shrink: 0;
-    }
-
-    .about-features {
-      display: grid;
-      gap: 14px;
-    }
-
-    .about-feature {
-      padding: 20px;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      transition: all 0.25s;
-    }
-
-    .about-feature:hover {
-      border-color: var(--line-hover);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .about-feature strong {
-      display: block;
-      font-size: 1.05rem;
-      margin-bottom: 6px;
-      font-weight: 700;
-    }
-
-    .about-feature span {
-      color: var(--text-secondary);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-
-    /* ----- SERVICES ----- */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    /* ----- PROJECTS ----- */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .project-thumb {
-      height: 180px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(59, 130, 246, 0.03));
-      margin-bottom: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-thumb::before {
-      content: '';
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, 0.08);
-      right: -30px;
-      top: -30px;
-    }
-
-    .project-thumb::after {
-      content: '';
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(245, 158, 11, 0.06);
-      left: 16px;
-      bottom: 16px;
-      box-shadow: 60px -20px 0 0 rgba(37, 99, 235, 0.05);
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-
-    .project-tags span {
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
-      color: var(--text-muted);
-    }
-
-    .project-card h3 {
-      font-size: 1.05rem;
-    }
-
-    .project-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 16px;
-      padding-top: 4px;
-    }
-
-    .project-links a {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--primary);
-      transition: color 0.2s;
-    }
-
-    .project-links a:hover {
-      color: var(--primary-hover);
-    }
-
-    /* ----- CONTACT ----- */
-    .contact-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .contact-info h2 {
-      margin-bottom: 16px;
-    }
-
-    .contact-info p {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .contact-channels {
-      display: grid;
-      gap: 10px;
-    }
-
-    .contact-channel {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 18px;
-      border-radius: var(--radius-xs);
-      border: 1px solid var(--line);
-      transition: all 0.2s;
-    }
-
-    .contact-channel:hover {
-      border-color: var(--line-hover);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .contact-channel-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      background: var(--primary-soft);
-      font-size: 1.1rem;
-    }
-
-    .contact-channel-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .contact-channel-text small {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .contact-channel-text strong {
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-
-    .contact-form-box {
-      padding: 32px;
-    }
-
-    .form {
-      display: grid;
-      gap: 16px;
-    }
-
-    .field {
-      display: grid;
-      gap: 6px;
-    }
-
-    .field label {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: var(--radius-xs);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.02);
-      color: var(--text);
-      font: inherit;
-      font-size: 0.95rem;
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    .field input:focus,
-    .field textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-    }
-
-    .field textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    #form-status {
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    /* ----- FOOTER ----- */
-    footer {
-      border-top: 1px solid var(--line);
-      margin-top: 40px;
-    }
-
-    .footer-inner {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      gap: 40px;
-      padding: 56px 0 40px;
-    }
-
-    .footer-brand p {
-      color: var(--text-secondary);
-      font-size: 0.92rem;
-      line-height: 1.7;
-      max-width: 36ch;
-      margin-top: 14px;
-    }
-
-    .footer-col h4 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--text-muted);
-      margin-bottom: 18px;
-    }
-
-    .footer-col a {
-      display: block;
-      color: var(--text-secondary);
-      font-size: 0.92rem;
-      padding: 4px 0;
-      transition: color 0.2s;
-    }
-
-    .footer-col a:hover {
-      color: var(--text);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid var(--line);
-      padding: 20px 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-
-    /* ----- ANIMATIONS ----- */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-up.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .fade-up.show:nth-child(2) { transition-delay: 0.1s; }
-    .fade-up.show:nth-child(3) { transition-delay: 0.2s; }
-
-    /* ----- RESPONSIVE ----- */
-    @media (max-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .hero-visual { order: -1; }
-      .mock-card { max-width: 100%; }
-      .hero-metrics { max-width: 100%; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links a:not(.btn) { display: none; }
-      .about-grid,
-      .contact-wrapper,
-      .footer-inner {
-        grid-template-columns: 1fr;
-      }
-      .services-grid,
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      .mock-grid { grid-template-columns: 1fr; }
-      .hero { padding: 60px 0 50px; }
-      section { padding: 40px 0; }
-      .hero-metrics { flex-direction: column; gap: 16px; }
-      .hero-metric { padding-left: 0 !important; border-left: none !important; }
-      .footer-inner { gap: 28px; }
-    }
-
-    @media (max-width: 480px) {
-      .container { width: 92%; }
-      .hero h1 { font-size: 1.9rem; }
-      .mock-body { padding: 16px; }
-      .contact-form-box { padding: 24px; }
-      .card { padding: 22px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
@@ -940,104 +35,106 @@
     <!-- HERO -->
     <section class="hero" id="inicio">
       <div class="container">
-        <div class="hero-grid">
-          <div class="fade-up">
-            <div class="hero-tag">
-              <span class="hero-tag-dot"></span>
-              Consultoria & desenvolvimento digital
-            </div>
-            <h1>Estratégia, design e tecnologia <span>para negócios que querem crescer</span>.</h1>
-            <p>
-              Criamos experiências digitais profissionais que conectam sua marca aos clientes certos. 
-              Da estratégia à entrega, cada detalhe é pensado para gerar resultado.
-            </p>
+        <div class="content-frame hero-single">
+          <div class="hero-grid">
+            <div class="fade-up">
+              <div class="hero-tag">
+                <span class="hero-tag-dot"></span>
+                Consultoria & desenvolvimento digital
+              </div>
+              <h1>Estratégia, design e tecnologia <span>para negócios que querem crescer</span>.</h1>
+              <p>
+                Criamos experiências digitais profissionais que conectam sua marca aos clientes certos.
+                Da estratégia à entrega, cada detalhe é pensado para gerar resultado.
+              </p>
 
-            <div class="hero-actions">
-              <a href="#projetos" class="btn btn-primary">Ver projetos</a>
-              <a href="#contato" class="btn btn-ghost">Solicitar orçamento</a>
-            </div>
+              <div class="hero-actions">
+                <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+                <a href="#contato" class="btn btn-ghost">Solicitar orçamento</a>
+              </div>
 
-            <div class="hero-metrics">
-              <div class="hero-metric">
-                <strong>+12</strong>
-                <span>Projetos entregues</span>
-              </div>
-              <div class="hero-metric">
-                <strong>100%</strong>
-                <span>Foco em performance</span>
-              </div>
-              <div class="hero-metric">
-                <strong>24h</strong>
-                <span>Resposta inicial</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-visual fade-up">
-            <div class="mock-card">
-              <div class="mock-header">
-                <span class="mock-dot"></span>
-                <span class="mock-dot"></span>
-                <span class="mock-dot"></span>
-              </div>
-              <div class="mock-body">
-                <div class="mock-chart">
-                  <div class="mock-chart-bars">
-                    <div class="mock-chart-bar"></div>
-                    <div class="mock-chart-bar"></div>
-                    <div class="mock-chart-bar"></div>
-                    <div class="mock-chart-bar"></div>
-                    <div class="mock-chart-bar"></div>
-                    <div class="mock-chart-bar"></div>
-                    <div class="mock-chart-bar"></div>
-                  </div>
+              <div class="hero-metrics">
+                <div class="hero-metric">
+                  <strong>+12</strong>
+                  <span>Projetos entregues</span>
                 </div>
-
-                <div class="mock-grid">
-                  <div class="mock-item">
-                    <div class="mock-item-label">Stack principal</div>
-                    <div class="mock-tags">
-                      <span class="mock-tag">HTML/CSS</span>
-                      <span class="mock-tag">JavaScript</span>
-                      <span class="mock-tag">Java</span>
-                      <span class="mock-tag">Python</span>
-                      <span class="mock-tag">C#</span>
-                    </div>
-                  </div>
-
-                  <div class="mock-item">
-                    <div class="mock-item-label">Indicadores</div>
-                    <div class="mock-progress">
-                      <div class="mock-progress-row">
-                        <span class="mock-progress-label">Qualidade</span>
-                        <div class="mock-progress-track"><div class="mock-progress-fill" style="width:92%"></div></div>
-                      </div>
-                      <div class="mock-progress-row">
-                        <span class="mock-progress-label">Performance</span>
-                        <div class="mock-progress-track"><div class="mock-progress-fill" style="width:85%"></div></div>
-                      </div>
-                      <div class="mock-progress-row">
-                        <span class="mock-progress-label">Entrega</span>
-                        <div class="mock-progress-track"><div class="mock-progress-fill" style="width:78%"></div></div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="hero-metric">
+                  <strong>100%</strong>
+                  <span>Foco em performance</span>
                 </div>
+                <div class="hero-metric">
+                  <strong>24h</strong>
+                  <span>Resposta inicial</span>
+                </div>
+              </div>
+            </div>
 
-                <div class="mock-item">
-                  <div class="mock-item-label">Projetos em destaque</div>
-                  <div class="mock-projects">
-                    <div class="mock-project">
-                      <span class="mock-project-name">Landing Page Premium</span>
-                      <span class="mock-project-tag">Conversão</span>
+            <div class="hero-visual fade-up">
+              <div class="mock-card">
+                <div class="mock-header">
+                  <span class="mock-dot"></span>
+                  <span class="mock-dot"></span>
+                  <span class="mock-dot"></span>
+                </div>
+                <div class="mock-body">
+                  <div class="mock-chart">
+                    <div class="mock-chart-bars">
+                      <div class="mock-chart-bar"></div>
+                      <div class="mock-chart-bar"></div>
+                      <div class="mock-chart-bar"></div>
+                      <div class="mock-chart-bar"></div>
+                      <div class="mock-chart-bar"></div>
+                      <div class="mock-chart-bar"></div>
+                      <div class="mock-chart-bar"></div>
                     </div>
-                    <div class="mock-project">
-                      <span class="mock-project-name">Sistema Web</span>
-                      <span class="mock-project-tag">Automação</span>
+                  </div>
+
+                  <div class="mock-grid">
+                    <div class="mock-item">
+                      <div class="mock-item-label">Stack principal</div>
+                      <div class="mock-tags">
+                        <span class="mock-tag">HTML/CSS</span>
+                        <span class="mock-tag">JavaScript</span>
+                        <span class="mock-tag">Java</span>
+                        <span class="mock-tag">Python</span>
+                        <span class="mock-tag">C#</span>
+                      </div>
                     </div>
-                    <div class="mock-project">
-                      <span class="mock-project-name">Portfólio Profissional</span>
-                      <span class="mock-project-tag">Presença digital</span>
+
+                    <div class="mock-item">
+                      <div class="mock-item-label">Indicadores</div>
+                      <div class="mock-progress">
+                        <div class="mock-progress-row">
+                          <span class="mock-progress-label">Qualidade</span>
+                          <div class="mock-progress-track"><div class="mock-progress-fill" style="width:92%"></div></div>
+                        </div>
+                        <div class="mock-progress-row">
+                          <span class="mock-progress-label">Performance</span>
+                          <div class="mock-progress-track"><div class="mock-progress-fill" style="width:85%"></div></div>
+                        </div>
+                        <div class="mock-progress-row">
+                          <span class="mock-progress-label">Entrega</span>
+                          <div class="mock-progress-track"><div class="mock-progress-fill" style="width:78%"></div></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mock-item">
+                    <div class="mock-item-label">Projetos em destaque</div>
+                    <div class="mock-projects">
+                      <div class="mock-project">
+                        <span class="mock-project-name">Landing Page Premium</span>
+                        <span class="mock-project-tag">Conversão</span>
+                      </div>
+                      <div class="mock-project">
+                        <span class="mock-project-name">Sistema Web</span>
+                        <span class="mock-project-tag">Automação</span>
+                      </div>
+                      <div class="mock-project">
+                        <span class="mock-project-name">Portfólio Profissional</span>
+                        <span class="mock-project-tag">Presença digital</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1051,11 +148,11 @@
     <!-- SOBRE -->
     <section id="sobre">
       <div class="container">
-        <div class="section-header fade-up">
+        <div class="section-header fade-up content-frame">
           <span class="section-label">Sobre</span>
           <h2 class="section-title">Presença digital com propósito e estratégia</h2>
           <p class="section-desc">
-            Sua empresa merece mais do que "estar online". Criamos experiências digitais que 
+            Sua empresa merece mais do que "estar online". Criamos experiências digitais que
             geram confiança, conectam com o público certo e convertem visitantes em clientes.
           </p>
         </div>
@@ -1064,8 +161,8 @@
           <div class="card fade-up">
             <h3>Por que escolher a Exata-Mente?</h3>
             <p>
-              Nos primeiros segundos o visitante decide se permanece ou sai. Nossa abordagem 
-              combina estratégia, design e tecnologia para garantir que ele fique, confie e 
+              Nos primeiros segundos o visitante decide se permanece ou sai. Nossa abordagem
+              combina estratégia, design e tecnologia para garantir que ele fique, confie e
               tome a ação que seu negócio precisa.
             </p>
             <ul class="about-list">
@@ -1096,11 +193,11 @@
     <!-- SERVIÇOS -->
     <section id="servicos">
       <div class="container">
-        <div class="section-header fade-up">
+        <div class="section-header fade-up content-frame">
           <span class="section-label">Serviços</span>
           <h2 class="section-title">Soluções que fortalecem sua marca</h2>
           <p class="section-desc">
-            Desenvolvemos soluções digitais sob medida para atrair clientes, fortalecer sua 
+            Desenvolvemos soluções digitais sob medida para atrair clientes, fortalecer sua
             presença online e gerar resultados reais para o seu negócio.
           </p>
         </div>
@@ -1110,7 +207,7 @@
             <div class="card-icon">&#9874;</div>
             <h3>Landing Pages</h3>
             <p>
-              Páginas objetivas e estrategicamente desenhadas para apresentar serviços, 
+              Páginas objetivas e estrategicamente desenhadas para apresentar serviços,
               captar leads qualificados e gerar conversões.
             </p>
           </article>
@@ -1119,7 +216,7 @@
             <div class="card-icon">&#9881;</div>
             <h3>Sistemas & Automações</h3>
             <p>
-              Soluções web personalizadas para organizar processos, centralizar informações 
+              Soluções web personalizadas para organizar processos, centralizar informações
               e otimizar a operação do seu negócio.
             </p>
           </article>
@@ -1128,7 +225,7 @@
             <div class="card-icon">&#9733;</div>
             <h3>Portfólios & Presença Digital</h3>
             <p>
-              Estruturas modernas para apresentar sua marca, reforçar autoridade e valorizar 
+              Estruturas modernas para apresentar sua marca, reforçar autoridade e valorizar
               seus projetos com profissionalismo.
             </p>
           </article>
@@ -1139,47 +236,45 @@
     <!-- PROJETOS -->
     <section id="projetos">
       <div class="container">
-        <div class="section-header fade-up">
+        <div class="section-header fade-up content-frame">
           <span class="section-label">Portfólio</span>
           <h2 class="section-title">Projetos que entregam resultado</h2>
           <p class="section-desc">
-            Cada projeto é desenvolvido com foco em performance, design estratégico e 
+            Cada projeto é desenvolvido com foco em performance, design estratégico e
             impacto real para o negócio do cliente.
           </p>
         </div>
 
         <div class="projects-grid">
           <article class="card project-card fade-up">
-            <div class="project-thumb"></div>
+            <img class="project-thumb-img" src="imagens/Flamby.png" alt="Flamby English Academy" />
             <div class="project-tags">
-              <span>Website</span>
-              <span>UI Moderna</span>
+              <span>Institucional</span>
+              <span>Landing Page</span>
               <span>Responsivo</span>
             </div>
-            <h3>Projeto Alpha</h3>
+            <h3>Flamby English Academy</h3>
             <p>
-              Página institucional com foco em apresentação de marca, autoridade visual e geração de contatos qualificados.
+              Escola de inglês com aulas personalizadas e atendimento 100% remoto. Site institucional com apresentação da metodologia, depoimentos e contato via WhatsApp.
             </p>
             <div class="project-links">
-              <a href="#">Ver projeto &rarr;</a>
-              <a href="#">Código fonte</a>
+              <a href="https://www.flamby.com.br/" target="_blank" rel="noopener noreferrer">Visitar site &rarr;</a>
             </div>
           </article>
 
           <article class="card project-card fade-up">
-            <div class="project-thumb"></div>
+            <img class="project-thumb-img" src="imagens/JJ_Aviamentos.png" alt="J&J Tecidos e Aviamentos" />
             <div class="project-tags">
-              <span>Sistema Web</span>
-              <span>Dashboard</span>
-              <span>Produtividade</span>
+              <span>E-commerce</span>
+              <span>Next.js</span>
+              <span>Carrinho</span>
             </div>
-            <h3>Projeto Beta</h3>
+            <h3>J&J Tecidos e Aviamentos</h3>
             <p>
-              Interface para organização de processos com painéis de visualização e fluxo de trabalho simplificado.
+              E-commerce completo para loja de tecidos e aviamentos, com catálogo por categorias, busca, carrinho lateral e finalização de pedidos via WhatsApp. Desenvolvido com Next.js.
             </p>
             <div class="project-links">
-              <a href="#">Ver projeto &rarr;</a>
-              <a href="#">Detalhes</a>
+              <a href="https://jjaviamentos.com.br/" target="_blank" rel="noopener noreferrer">Visitar site &rarr;</a>
             </div>
           </article>
 
@@ -1190,7 +285,7 @@
               <span>Branding</span>
               <span>Performance</span>
             </div>
-            <h3>Projeto Gamma</h3>
+            <h3>Em produção</h3>
             <p>
               Estrutura visual criada para valorizar cases, fortalecer o posicionamento digital e prender a atenção.
             </p>
@@ -1206,44 +301,15 @@
     <!-- CONTATO -->
     <section id="contato">
       <div class="container">
-        <div class="section-header fade-up">
+        <div class="content-frame fade-up contact-single">
           <span class="section-label">Contato</span>
           <h2 class="section-title">Vamos conversar sobre seu projeto</h2>
           <p class="section-desc">
-            Tem uma ideia ou desafio? Entre em contato e descubra como podemos transformar 
+            Tem uma ideia ou desafio? Entre em contato e descubra como podemos transformar
             suas necessidades em uma solução digital de impacto.
           </p>
-        </div>
 
-        <div class="contact-wrapper fade-up">
-          <div class="contact-info">
-            <div class="contact-channels">
-              <div class="contact-channel">
-                <div class="contact-channel-icon">&#9993;</div>
-                <div class="contact-channel-text">
-                  <small>E-mail</small>
-                  <strong>contato@exata-mente.com</strong>
-                </div>
-              </div>
-              <div class="contact-channel">
-                <div class="contact-channel-icon">&#128222;</div>
-                <div class="contact-channel-text">
-                  <small>Telefone</small>
-                  <strong>(11) 99999-9999</strong>
-                </div>
-              </div>
-              <div class="contact-channel">
-                <div class="contact-channel-icon">&#128205;</div>
-                <div class="contact-channel-text">
-                  <small>Atendimento</small>
-                  <strong>Seg a Sex, 9h às 18h</strong>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card contact-form-box">
-            <h3 style="margin-bottom: 20px;">Envie sua mensagem</h3>
+          <div class="contact-form-inner">
             <form id="contactForm" class="form"
                   action="https://formspree.io/f/xzdkkjdn" method="POST">
               <div class="field">
@@ -1282,7 +348,7 @@
             </div>
           </a>
           <p>
-            Transformando ideias em soluções digitais de impacto. Estratégia, design e tecnologia 
+            Transformando ideias em soluções digitais de impacto. Estratégia, design e tecnologia
             trabalhando juntos para o seu negócio crescer.
           </p>
         </div>
@@ -1310,51 +376,11 @@
     </div>
   </footer>
 
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    }, { threshold: 0.12 });
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+  </div>
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    const form = document.getElementById('contactForm');
-    const statusText = document.getElementById('form-status');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', async function (event) {
-      event.preventDefault();
-      statusText.textContent = 'Enviando mensagem...';
-      statusText.style.color = '#8b9bb8';
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando...';
-
-      try {
-        const response = await fetch(form.action, {
-          method: form.method,
-          body: new FormData(form),
-          headers: { Accept: 'application/json' }
-        });
-
-        if (response.ok) {
-          statusText.textContent = 'Mensagem enviada com sucesso! Entraremos em contato em breve.';
-          statusText.style.color = '#10b981';
-          form.reset();
-        } else {
-          statusText.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
-          statusText.style.color = '#f87171';
-        }
-      } catch {
-        statusText.textContent = 'Erro de conexão. Verifique sua internet e tente novamente.';
-        statusText.style.color = '#f87171';
-      }
-
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Enviar mensagem';
-    });
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
