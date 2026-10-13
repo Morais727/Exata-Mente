@@ -66,3 +66,64 @@ lightbox.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeLightbox();
 });
+
+const carousel = document.querySelector('.projects-carousel');
+const track = carousel.querySelector('.projects-track');
+const prevBtn = carousel.querySelector('.carousel-prev');
+const nextBtn = carousel.querySelector('.carousel-next');
+const dotsWrap = document.querySelector('.carousel-dots');
+const slides = track.querySelectorAll('.project-card');
+
+function slideStep() {
+  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+  return slides[0].offsetWidth + gap;
+}
+
+function perView() {
+  return Math.round((track.clientWidth + 1) / slideStep()) || 1;
+}
+
+function pageCount() {
+  return Math.max(1, slides.length - perView() + 1);
+}
+
+function currentIndex() {
+  return Math.round(track.scrollLeft / slideStep());
+}
+
+function goTo(index) {
+  track.scrollTo({ left: index * slideStep() });
+}
+
+function renderDots() {
+  dotsWrap.innerHTML = '';
+  const count = pageCount();
+  dotsWrap.hidden = count <= 1;
+  for (let i = 0; i < count; i++) {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  }
+  updateCarousel();
+}
+
+function updateCarousel() {
+  const index = currentIndex();
+  const maxScroll = track.scrollWidth - track.clientWidth;
+  prevBtn.disabled = track.scrollLeft <= 2;
+  nextBtn.disabled = track.scrollLeft >= maxScroll - 2;
+  dotsWrap.querySelectorAll('button').forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+
+prevBtn.addEventListener('click', () => goTo(currentIndex() - 1));
+nextBtn.addEventListener('click', () => goTo(currentIndex() + 1));
+track.addEventListener('scroll', updateCarousel, { passive: true });
+track.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentIndex() - 1); }
+  if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
+});
+window.addEventListener('resize', renderDots);
+renderDots();
